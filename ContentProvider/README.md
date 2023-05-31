@@ -30,12 +30,98 @@ Step 7: Save and run the application.
 ```
 /*
 Program to print the text create your own content providers to get contacts details.
-Developed by:
-Registeration Number :
+Developed by: SATHYA N
+Registeration Number : 212221040149
 */
 ```
-
+## activity_main.xml
+              <?xml version="1.0" encoding="utf-8"?> 
+              <androidx.constraintlayout.widget.ConstraintLayout 
+              xmlns:android="http://schemas.android.com/apk/res/android" 
+              xmlns:app="http://schemas.android.com/apk/res-auto" 
+              xmlns:tools="http://schemas.android.com/tools" 
+              android:layout_width="match_parent" 
+              android:layout_height="match_parent" 
+              tools:context=".MainActivity"> 
+              <TextView 
+                  android:id="@+id/textView"
+                  android:layout_width="wrap_content”
+                  android:layout_height="wrap_content"
+                  android:text="Hello World!"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintLeft_toLeftOf="parent”
+                  app:layout_constraintRight_toRightOf="parent”
+                  app:layout_constraintTop_toTopOf="parent”
+                  app:layout_constraintVertical_bias="0.32" />
+              <Button 
+                  android:id="@+id/button" 
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:onClick="btnGetContactPressed" 
+                  android:text="Get contact"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent”
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintVertical_bias="0.55" /> 
+              </androidx.constraintlayout.widget.ConstraintLayout> 
+              
+## MainActivity.java 
+                package com.example.contentprovider;
+                import androidx.annotation.RequiresApi; 
+                import androidx.appcompat.app.AppCompatActivity; 
+                import androidx.core.app.ActivityCompat; 
+                import androidx.core.content.ContextCompat; 
+                import android.Manifest; 
+                import android.annotation.SuppressLint; 
+                import android.content.ContentResolver; 
+                import android.content.pm.PackageManager; 
+                import android.database.Cursor;
+                import android.net.Uri; 
+                import android.os.Build;
+                import android.os.Bundle; 
+                import android.provider.ContactsContract; 
+                import android.util.Log; 
+                import android.view.View; 
+                public class MainActivity extends AppCompatActivity { 
+                 @Override 
+                   protected void onCreate(Bundle savedInstanceState) { 
+                  super.onCreate(savedInstanceState); 
+                  setContentView(R.layout.activity_main); 
+                  } 
+                  public void btnGetContactPressed(View v) { 
+                  getPhoneContacts(); 
+                  }
+                  private void getPhoneContacts() { 
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) !=
+                      PackageManager.PERMISSION_GRANTED)
+                    ActivityCompat.requestPermissions(this, new 
+                  String[]{Manifest.permission.READ_CONTACTS}, 0); 
+                  } 
+                  ContentResolver cr = getContentResolver(); 
+                  Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI; 
+                  @SuppressLint({"NewApi", "LocalSuppress"}) Cursor cursor = cr.query(uri, null, null, 
+                  null); 
+                  Log.i("CONTACT_PROVIDER_DEMO0", "TOTAL # OF CONTACTS ::" + 
+                  Integer.toString(cursor.getCount())); 
+                    if (cursor.getCount() > 0) { 
+                      while (cursor.moveToNext()) { 
+                        @SuppressLint("Range") String contactname = 
+                  cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_ 
+                  NAME)); 
+                        @SuppressLint("Range") String contactnumber = 
+                  cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                  ); 
+                        Log.i("CONTACT_PROVIDER_DEMO", "CONTACT_NAME ::" + contactname + 
+                  "PH # ::" + contactnumber); 
+                      } 
+                     } 
+                    } 
+                  } 
 ## OUTPUT
+![image](https://github.com/Sathya-006/Mobile-Application-Development/assets/121661327/94335649-d171-4a52-b241-5212891e18d1)
+![image](https://github.com/Sathya-006/Mobile-Application-Development/assets/121661327/86a6c7d8-8004-45a7-9f87-e6aec1d692e8)
+![image](https://github.com/Sathya-006/Mobile-Application-Development/assets/121661327/cf8b7e9b-3f71-419c-85cb-2c94c4300e57)
 
 
 
