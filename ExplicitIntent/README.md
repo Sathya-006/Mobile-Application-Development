@@ -22,167 +22,136 @@ Developed by: SATHYA N
 Registeration Number : 212221040149
 */
 ```
-## activity_main.xml : 
-<?xml version="1.0" encoding="utf-8"?> 
-<androidx.constraintlayout.widget.ConstraintLayout 
-xmlns:android="http://schemas.android.com/apk/res/android" 
-xmlns:app="http://schemas.android.com/apk/res-auto" 
-xmlns:tools="http://schemas.android.com/tools" 
-android:layout_width="match_parent" 
-android:layout_height="match_parent" 
-tools:context=".MainActivity"> 
- <TextView 
-android:id="@+id/maintxt" 
-android:layout_width="317dp" 
-android:layout_height="38dp" 
-android:layout_marginTop="152dp" 
-android:text="FACTORIAL CALCULATOR" 
-android:textAlignment="center" 
-android:textColor="@color/black" 
-android:textSize="25sp" 
-app:layout_constraintBottom_toTopOf="@+id/text1" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" /> 
- <TextView 
-android:id="@+id/text1" 
-android:layout_width="156dp" 
-android:layout_height="32dp" 
-android:layout_marginTop="252dp" 
-android:text="Enter a Number" 
-android:textColor="@color/black" 
-android:textSize="20sp" 
-app:layout_constraintBottom_toTopOf="@+id/n1" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintHorizontal_bias="0.58" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" 
-app:layout_constraintVertical_bias="0.403" /> 
- <EditText 
-android:id="@+id/n1" 
-android:layout_width="50dp" 
-android:layout_height="50dp" 
-android:layout_alignRight="@+id/text1" 
-android:layout_marginTop="340dp" 
-android:textColor="#EA80FC" 
-app:layout_constraintBottom_toTopOf="@+id/btn1" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" /> 
- <Button 
-android:id="@+id/btn1" 
-android:layout_width="164dp" 
-android:layout_height="51dp" 
-android:background="#F44336" 
-android:text="Calculate" 
-android:textColor="@color/white" 
-app:layout_constraintBottom_toBottomOf="parent" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintHorizontal_bias="0.497" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" 
-app:layout_constraintVertical_bias="0.714" /> 
- <TextView 
-android:id="@+id/resum" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-android:layout_marginLeft="150dp" 
-tools:ignore="MissingConstraints" /> 
-</androidx.constraintlayout.widget.ConstraintLayout>
+## activity_main.xml 
+                   <?xml version="1.0" encoding="utf-8"?>
+                   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                   xmlns:tools="http://schemas.android.com/tools"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   tools:context=".MainActivity">
+
+                  <EditText
+                          android:id="@+id/numberEditText1"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="172dp"
+                          android:ems="10"
+                          android:inputType="textPersonName"
+                          android:text=""
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintHorizontal_bias="0.497"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />
+
+                 <Button
+                          android:id="@+id/factorialButton"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="340dp"
+                          android:text="Button"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintHorizontal_bias="0.498"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />
+
+                  </androidx.constraintlayout.widget.ConstraintLayout>
 
 ## MainActivity.java 
-package com.example.explicitintent; 
-import androidx.appcompat.app.AppCompatActivity; 
-import android.annotation.SuppressLint; 
-import android.content.Intent; 
-import android.os.Bundle; 
-import android.view.View; 
-import android.widget.Button; 
-import android.widget.EditText; 
-import android.widget.TextView; 
-public class MainActivity extends AppCompatActivity { 
-public static String Send_Result; 
-EditText num1; 
-TextView txtrslt; 
-Button btn; 
-double n,i=1,fact=1; 
- @SuppressLint("MissingInflatedId") 
- @Override 
-protected void onCreate(BundlesavedInstanceState) { 
-super.onCreate(savedInstanceState); 
-setContentView(R.layout.activity_main); 
-num1 = (EditText) findViewById(R.id.n1); 
-txtrslt = (TextView) findViewById(R.id.resum); 
-btn = (Button) findViewById(R.id.btn1); 
-btn.setOnClickListener(new View.OnClickListener() { 
- @Override 
-public void onClick(View view) { 
-n = Double.parseDouble(num1.getText().toString()); 
-while (i<=n) 
- { 
- fact=fact*I;
- i++; 
- } 
- String message = Double.toString(fact); 
-Intent myIntent = new Intent(MainActivity.this, MainActivity2.class); 
-myIntent.putExtra(Send_Result, message); 
-startActivity(myIntent); 
- } 
- }); 
- } 
-} 
+                  package com.example.factorialexplicit;
+                  import static com.example.factorialexplicit.R.id.factorialButton;
+                  import static com.example.factorialexplicit.R.id.numberEditText1;
+                  import androidx.appcompat.app.AppCompatActivity;
+                  import android.annotation.SuppressLint;
+                  import android.content.Intent;
+                  import android.os.Bundle;
+                  import android.view.View;
+                  import android.widget.Button;
+                  import android.widget.EditText;
+                  public class MainActivity extends AppCompatActivity {
+                  private EditText numberEditText;
+                  private Button factorialButton;
+                   @Override
+                  protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  setContentView(R.layout.activity_main);
+                  numberEditText = findViewById(R.id.numberEditText1);
+                  factorialButton = findViewById(R.id.factorialButton);
+                  factorialButton.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                    public void onClick(View v) {
+                  int number = Integer.parseInt(numberEditText.getText().toString());
+                  Intent intent = new Intent(MainActivity.this, FactorialActivity.class);
+                  intent.putExtra("number", number);
+                  startActivity(intent);
+                   }
+                     });
+                     }
+                  }
 
 ## activity_main2.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<androidx.constraintlayout.widget.ConstraintLayout 
-xmlns:android="http://schemas.android.com/apk/res/android" 
-xmlns:app="http://schemas.android.com/apk/res-auto" 
-xmlns:tools="http://schemas.android.com/tools" 
-android:layout_width="match_parent" 
-android:layout_height="match_parent" 
-tools:context=".MainActivity2"> 
- <TextView 
-android:id="@+id/textView" 
-android:layout_width="137dp" 
-android:layout_height="47dp" 
-android:text="RESULT : " 
-android:textColor="@color/black" 
-android:textSize="34sp" 
-app:layout_constraintBottom_toBottomOf="parent" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" 
-app:layout_constraintVertical_bias="0.318" /> 
- <TextView 
-android:id="@+id/reslt" 
-android:layout_width="96dp" 
-android:layout_height="70dp" 
-android:text="00.00" 
-android:textColor="#F44336" 
-android:textSize="38sp" 
-app:layout_constraintBottom_toBottomOf="parent" 
-app:layout_constraintEnd_toEndOf="parent" 
-app:layout_constraintHorizontal_bias="0.498" 
-app:layout_constraintStart_toStartOf="parent" 
-app:layout_constraintTop_toTopOf="parent" 
-app:layout_constraintVertical_bias="0.465" /> 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                   <?xml version="1.0" encoding="utf-8"?>
+                   <androidx.constraintlayout.widget.ConstraintLayout 
+                   xmlns:android="http://schemas.android.com/apk/res/android"
+                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                   xmlns:tools="http://schemas.android.com/tools"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   tools:context=".MainActivity">
+                   <EditText
+                            android:id="@+id/numberEditText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="172dp"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text=""
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.497"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                   <Button
+                             android:id="@+id/factorialButton"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="340dp"
+                             android:text="Button"
+                             app:layout_constraintEnd_toEndOf="parent"
+                             app:layout_constraintHorizontal_bias="0.498"
+                             app:layout_constraintStart_toStartOf="parent"
+                             app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 ## MainActivity2.java package com.example.explicitintent; 
-import androidx.appcompat.app.AppCompatActivity; 
-import android.content.Intent; 
-import android.os.Bundle; import android.widget.TextView; 
-public class MainActivity2 extends AppCompatActivity { 
- @Override 
-protected void onCreate(Bundle savedInstanceState) { 
-super.onCreate(savedInstanceState); 
-setContentView(R.layout.activity_main2); 
- Intent intent = getIntent(); 
- String message = intent.getStringExtra(MainActivity.Send_Result); 
-TextView textView = findViewById(R.id.reslt); 
-textView.setText(message); 
- } 
-} 
+                          package com.example.factorialexplicit;
+                          import static com.example.factorialexplicit.R.id.factorialTextView;
+                          import androidx.appcompat.app.AppCompatActivity;
+                          import android.annotation.SuppressLint;
+                          import android.content.Intent;
+                          import android.os.Bundle;
+                          import android.widget.TextView;
+                          public class FactorialActivity extends AppCompatActivity {
+                          private TextView factorialTextView;
+                             @Override
+                              protected void onCreate(Bundle savedInstanceState) {
+                              super.onCreate(savedInstanceState);
+                              setContentView(R.layout.activity_factorial);
+                              factorialTextView = findViewById(R.id.factorialTextView;
+                              Intent intent = getIntent();
+                              int number = intent.getIntExtra("number", 0);
+                              long factorial = calculateFactorial(number);
+                              factorialTextView.setText("Factorial of " + number + " is " + factorial)
+                              }
+                              private long calculateFactorial(int number) {
+                              long factorial = 1;
+                              for (int i = 1; i <= number; i++) {
+                              factorial *= i;
+                              }
+                              return factorial;
+                              }
+                              }
 
 
 ## OUTPUT
